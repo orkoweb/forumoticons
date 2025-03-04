@@ -34,4 +34,3 @@ FoRuMoTiCoNs est un script PHP permettant d'afficher une galerie de smileys et d
 ## Licence
 
 Ce projet est sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Vous pouvez l’utiliser et le modifier, mais pas en tirer profit commercialement.
-# FoRuMoTiCoNs
