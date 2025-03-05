@@ -36,7 +36,7 @@ Si une image est uploadée avec un nom de fichier identique à une image se trou
 - Seuls les fichiers `.png`, `.gif`, `.jpg`, et `.jpeg` sont autorisés.
 - Une limite de taille est appliquée aux fichiers uploadés.
 - Protection basique par mot de passe pour l’upload.
-- **Un mécanisme anti-bruteforce** limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload.
+- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload.
 
 ## Licence
 
@@ -80,7 +80,7 @@ If an image is uploaded with the same filename as an existing image on the serve
 - Only `.png`, `.gif`, `.jpg`, and `.jpeg` files are allowed.
 - A file size limit is applied to uploaded files.
 - Basic password protection is implemented for uploads.
-- **An anti-bruteforce mechanism** limits the number of incorrect login attempts to protect access to the upload form.
+- An anti-bruteforce mechanism limits the number of incorrect login attempts to protect access to the upload form.
 
 ## License
 
