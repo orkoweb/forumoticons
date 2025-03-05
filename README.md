@@ -11,21 +11,21 @@ FoRuMoTiCoNs est un script PHP permettant d'afficher une galerie de smileys et d
 
 ## Installation
 
-1. **Télécharger l’archive** contenant les fichiers.
-2. **Décompresser l’archive** sur votre serveur.
-3. **Déplacer le dossier** à l’emplacement souhaité.
-4. **Vérifier les permissions** pour permettre l’upload des fichiers (ex: `chmod 755` sur le dossier si nécessaire).
+1. **Télécharger l’archive** contenant les fichiers
+2. **Décompresser l’archive** sur votre serveur
+3. **Déplacer le dossier** à l’emplacement souhaité
+4. **Vérifier les permissions** pour permettre l’upload des fichiers (ex: `chmod 755` sur le dossier si nécessaire)
 
 ## Configuration
 
-- **Mot de passe d’upload** : Modifier la variable `$password` dans `upload.php`.
-- **URL des smileys** : Modifier la variable `$smileyPath` dans `index.php`.
+- **Mot de passe d’upload** : Modifier la variable `$password` dans `upload.php`
+- **URL des smileys** : Modifier la variable `$smileyPath` dans `index.php`
 
 ## Utilisation
 
-- Accéder à la page principale via un navigateur.
-- Cliquer sur un smiley pour copier son URL `[img]`.
-- Pour ajouter un smiley, utiliser le formulaire d’upload avec le mot de passe requis.
+- Accéder à la page principale via un navigateur
+- Cliquer sur un smiley pour copier son URL `[img]`
+- Pour ajouter un smiley, utiliser le formulaire d’upload avec le mot de passe requis
 
 ## Note
 
@@ -33,10 +33,10 @@ Si une image est uploadée avec un nom de fichier identique à une image se trou
 
 ## Sécurité
 
-- Seuls les fichiers `.png`, `.gif`, `.jpg`, et `.jpeg` sont autorisés.
-- Une limite de taille est appliquée aux fichiers uploadés.
-- Protection basique par mot de passe pour l’upload.
-- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload.
+- Seuls les fichiers `.png`, `.gif`, `.jpg`, et `.jpeg` sont autorisés
+- Une limite de taille est appliquée aux fichiers uploadés
+- Protection basique par mot de passe pour l’upload
+- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload
 
 ## Licence
 
@@ -55,21 +55,21 @@ FoRuMoTiCoNs is a PHP script that displays a gallery of smileys and allows users
 
 ## Installation
 
-1. **Download the archive** containing the files.
-2. **Extract the archive** on your server.
-3. **Move the folder** to the desired location.
-4. **Check permissions** to allow file uploads (e.g., `chmod 755` on the folder if necessary).
+1. **Download the archive** containing the files
+2. **Extract the archive** on your server
+3. **Move the folder** to the desired location
+4. **Check permissions** to allow file uploads (e.g., `chmod 755` on the folder if necessary)
 
 ## Configuration
 
-- **Upload password**: Modify the `$correctPassword` variable in `upload.php`.
-- **Smileys URL**: Modify the `$smileyPath` variable in `index.php`.
+- **Upload password**: Modify the `$correctPassword` variable in `upload.php`
+- **Smileys URL**: Modify the `$smileyPath` variable in `index.php`
 
 ## Usage
 
-- Access the main page through a browser.
-- Click on a smiley to copy its `[img]` URL.
-- To add a smiley, use the upload form with the required password.
+- Access the main page through a browser
+- Click on a smiley to copy its `[img]` URL
+- To add a smiley, use the upload form with the required password
 
 ## Note
 
@@ -77,10 +77,10 @@ If an image is uploaded with the same filename as an existing image on the serve
 
 ## Security
 
-- Only `.png`, `.gif`, `.jpg`, and `.jpeg` files are allowed.
-- A file size limit is applied to uploaded files.
-- Basic password protection is implemented for uploads.
-- An anti-bruteforce mechanism limits the number of incorrect login attempts to protect access to the upload form.
+- Only `.png`, `.gif`, `.jpg`, and `.jpeg` files are allowed
+- A file size limit is applied to uploaded files
+- Basic password protection is implemented for uploads
+- An anti-bruteforce mechanism limits the number of incorrect login attempts to protect access to the upload form
 
 ## License
 
