@@ -18,7 +18,7 @@ FoRuMoTiCoNs est un script PHP permettant d'afficher une galerie de smileys et d
 
 ## Configuration
 
-- **Mot de passe d’upload** : Modifier la variable `$correctPassword` dans `upload.php`.
+- **Mot de passe d’upload** : Modifier la variable `$password` dans `upload.php`.
 - **URL des smileys** : Modifier la variable `$smileyPath` dans `index.php`.
 
 ## Utilisation

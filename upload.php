@@ -5,7 +5,7 @@ $uploadDir = __DIR__ . "/"; // Dossier où enregistrer les fichiers
 $allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
 $allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 $maxFileSize = 500000; // 500 Ko max
-$correctPassword = "test"; // À changer !
+$password = "test"; // À changer !
 
 // Initialisation des tentatives de connexion
 if (!isset($_SESSION['attempts'])) {
@@ -26,7 +26,7 @@ if ($_SESSION['attempts'] >= 3) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Vérification du mot de passe
-    if (!isset($_POST['password']) || $_POST['password'] !== $correctPassword) {
+    if (!isset($_POST['password']) || $_POST['password'] !== $password) {
         $_SESSION['attempts']++;
         $_SESSION['last_attempt_time'] = time();
         header("Location: index.php?status=Mot de passe incorrect !");
