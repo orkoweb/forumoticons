@@ -27,9 +27,10 @@ FoRuMoTiCoNs est un script PHP permettant d'afficher une galerie de smileys et d
 - Cliquer sur un smiley pour copier son URL `[img]`
 - Pour ajouter un smiley, utiliser le formulaire d’upload avec le mot de passe requis
 
-## Note
+## Notes
 
-Si une image est uploadée avec un nom de fichier identique à une image se trouvant déjà sur le serveur, cette dernière sera écrasée sans avertissement par l'image uploadée.
+- La dimensions maximale des images uploadées et de 100px de largeur et 100px de hauteur.
+- Si une image est uploadée avec un nom de fichier identique à une image se trouvant déjà sur le serveur, cette dernière sera écrasée sans avertissement par l'image uploadée.
 
 ## Sécurité
 
@@ -71,9 +72,11 @@ FoRuMoTiCoNs is a PHP script that displays a gallery of smileys and allows users
 - Click on a smiley to copy its `[img]` URL
 - To add a smiley, use the upload form with the required password
 
-## Note
+## Notes
 
-If an image is uploaded with the same filename as an existing image on the server, the existing file will be overwritten without warning.
+- The maximum dimensions for uploaded images are 100px in width and 100px in height.
+- If an image is uploaded with the same filename as an existing image on the server, the existing file will be overwritten without warning.
+
 
 ## Security
 

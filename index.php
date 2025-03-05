@@ -59,7 +59,10 @@ $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
     </header>
     
     <?php if (isset($_GET['status'])): ?>
-        <p class="status-message <?= strpos($_GET['status'], 'incorrect') !== false || strpos($_GET['status'], 'Erreur') !== false ? 'status-error' : 'status-success' ?>" id="statusMessage">
+        <p class="status-message <?= (strpos($_GET['status'], 'incorrect') !== false 
+                                      || strpos($_GET['status'], 'Erreur') !== false 
+                                      || strpos($_GET['status'], 'trop grande') !== false) 
+                                      ? 'status-error' : 'status-success' ?>" id="statusMessage">
             <?= htmlspecialchars($_GET['status']); ?>
         </p>
     <?php endif; ?>

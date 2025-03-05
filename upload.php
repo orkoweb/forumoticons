@@ -49,6 +49,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Vérification des dimensions de l'image
+    list($width, $height) = getimagesize($file['tmp_name']);
+    if ($width > 100 || $height > 100) {
+        header("Location: index.php?status=Image trop grande (max 100x100) !");
+        exit();
+    }
+
     // Vérification de la taille
     if ($file['size'] > $maxFileSize) {
         header("Location: index.php?status=Fichier trop volumineux !");
