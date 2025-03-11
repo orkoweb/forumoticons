@@ -10,7 +10,7 @@ $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoRuMoTiCoNs</title>
+    <title>Forumoticons</title>
     <style>
         body { font-family: monospace; text-align: center; background-color: #a0a0a0; color:#1e1e1e; }
         .grid { max-width:980px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
@@ -50,7 +50,7 @@ $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
 </head>
 <body>
     <header>
-        <h1>FoRuMoTiCoNs</h1>
+        <h1>Forumoticons</h1>
         <form action="upload.php" method="POST" enctype="multipart/form-data" class="upload-form">
             <input type="file" name="file" required>
             <input type="password" name="password" placeholder="Mot de passe" required>
