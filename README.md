@@ -63,7 +63,7 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
 
 ## Configuration
 
-- **Upload password**: Modify the `$correctPassword` variable in `upload.php`
+- **Upload password**: Modify the `$password` variable in `upload.php`
 - **Smileys URL**: Modify the `$smileyPath` variable in `index.php`
 
 ## Usage
