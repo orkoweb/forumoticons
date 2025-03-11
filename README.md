@@ -1,8 +1,8 @@
 *English version is available below the French version.*
 
-# FoRuMoTiCoNs
+# Forumoticons
 
-FoRuMoTiCoNs est un script PHP permettant d'afficher une galerie de smileys et de copier leurs liens sous forme de balises `[img]`. Il inclut également un formulaire d'upload sécurisé.
+Forumoticons est un script PHP permettant d'afficher une galerie de smileys et de copier leurs liens sous forme de balises `[img]`. Il inclut également un formulaire d'upload sécurisé.
 
 ## Prérequis
 
@@ -45,9 +45,9 @@ Ce projet est sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/b
 
 ---
 
-# FoRuMoTiCoNs (English Version)
+# Forumoticons (English Version)
 
-FoRuMoTiCoNs is a PHP script that displays a gallery of smileys and allows users to copy their links in the `[img]` format. It also includes a secure upload form.
+Forumoticons is a PHP script that displays a gallery of smileys and allows users to copy their links in the `[img]` format. It also includes a secure upload form.
 
 ## Requirements
 
