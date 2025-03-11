@@ -4,7 +4,7 @@ session_start();
 $uploadDir = __DIR__ . "/"; // Dossier où enregistrer les fichiers
 $allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
 $allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
-$maxFileSize = 500000; // 500 Ko max
+$maxFileSize = 100000; // 100 Ko max
 $password = "test"; // À changer !
 
 // Initialisation des tentatives de connexion
