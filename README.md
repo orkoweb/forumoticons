@@ -43,6 +43,9 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
 
 Ce projet est sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Vous pouvez l’utiliser et le modifier, mais pas en tirer profit commercialement.
 
+![Forumoticons](https://raw.githubusercontent.com/orkoweb/forumoticons/refs/heads/main/forumoticons.png)
+*Forumoticons, une fois installé*
+
 ---
 
 # Forumoticons (English Version)
@@ -88,3 +91,6 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
 ## License
 
 This project is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). You may use and modify it, but not for commercial purposes.
+
+![Forumoticons](https://raw.githubusercontent.com/orkoweb/forumoticons/refs/heads/main/forumoticons.png)
+*Forumoticons, once installed*
