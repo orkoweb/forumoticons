@@ -14,8 +14,8 @@ $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Forumoticons</title>
     <style>
         body { font-family: monospace; text-align: center; background-color: #a0a0a0; color:#1e1e1e; }
