@@ -1,6 +1,10 @@
 <?php
 $directory = __DIR__; // Utilise le répertoire courant où se trouve index.php
 $images = glob($directory . "/*.{png,gif,jpg,jpeg}", GLOB_BRACE);
+// Filtrer pour exclure favicon.png
+$images = array_filter($images, function($image) {
+    return basename($image) !== "favicon.png";
+});
 natcasesort($images); // Trie les fichiers par ordre alphabétique, insensible à la casse
 $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
 ?>
