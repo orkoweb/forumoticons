@@ -1,4 +1,12 @@
 <?php
+// Renforcement de la sécurité des sessions
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_only_cookies', 1);
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+    ini_set('session.cookie_secure', 1);
+}
+session_start();
+
 $directory = __DIR__; // Utilise le répertoire courant où se trouve index.php
 $images = glob($directory . "/*.{png,gif,jpg,jpeg}", GLOB_BRACE);
 // Filtrer pour exclure favicon.png
