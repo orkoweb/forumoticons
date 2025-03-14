@@ -60,7 +60,6 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
   - Désactivation de l'interprétation PHP dans le répertoire
   - Prévention du listage du contenu du répertoire
   - En-têtes de sécurité pour prévenir le cross-site scripting
-- Messages d'erreur détaillés pour faciliter le diagnostic
 - Permissions adaptées sur les fichiers uploadés (chmod 0644)
 
 ## Licence
@@ -135,7 +134,6 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
   - Disabling PHP interpretation in the directory
   - Prevention of directory listing
   - Security headers to prevent cross-site scripting
-- Detailed error messages to facilitate diagnosis
 - Appropriate permissions on uploaded files (chmod 0644)
 
 ## License
