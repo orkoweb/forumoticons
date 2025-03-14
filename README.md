@@ -35,20 +35,33 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
 ## Sécurité
 
 - Seuls les fichiers `.png`, `.gif`, `.jpg`, et `.jpeg` sont autorisés
-- Une limite de taille est appliquée aux fichiers uploadés
+- Une limite de taille est appliquée aux fichiers uploadés (max 100 Ko)
 - Protection basique par mot de passe pour l'upload
-- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l'accès au formulaire d'upload
+- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées (3 maximum) avec un délai de blocage de 60 secondes
 - Sécurisation des cookies de session (HttpOnly, secure avec HTTPS, utilisation exclusive de cookies)
 - Validation renforcée des noms de fichiers :
-  - Translitération des caractères accentués
+  - Translitération des caractères accentués et spéciaux
   - Vérification des noms de fichiers interdits
-  - Protection contre les fichiers cachés
+  - Protection contre les fichiers cachés (commençant par un point)
   - Normalisation des noms de fichiers
+  - Génération automatique d'un nom pour les fichiers invalides
 - Séparation du code et des données :
   - Utilisation d'un répertoire dédié `/img/` pour les fichiers uploadés
   - Protection contre l'écrasement accidentel des fichiers système
   - Création automatique du répertoire si nécessaire
-  - Ajout d'un fichier `.htaccess` dans le dossier `/img/` pour empêcher l'exécution de code malveillant
+- Vérification complète des images :
+  - Double validation des types MIME avec `finfo` (plus sécurisé que `mime_content_type`)
+  - Vérification que le fichier est réellement une image valide
+  - Contrôle strict de la correspondance entre type MIME et extension
+  - Limitation des dimensions à 100x100 pixels maximum
+- Protection renforcée du répertoire d'images via `.htaccess` :
+  - Désactivation complète de l'exécution de scripts (.php, .pl, .py, etc.)
+  - Restriction aux seuls types d'images autorisés
+  - Désactivation de l'interprétation PHP dans le répertoire
+  - Prévention du listage du contenu du répertoire
+  - En-têtes de sécurité pour prévenir le cross-site scripting
+- Messages d'erreur détaillés pour faciliter le diagnostic
+- Permissions adaptées sur les fichiers uploadés (chmod 0644)
 
 ## Licence
 
@@ -97,20 +110,33 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
 ## Security
 
 - Only `.png`, `.gif`, `.jpg`, and `.jpeg` files are allowed
-- A file size limit is applied to uploaded files
+- A file size limit is applied to uploaded files (max 100 KB)
 - Basic password protection is implemented for uploads
-- An anti-bruteforce mechanism limits the number of incorrect login attempts to protect access to the upload form
+- An anti-bruteforce mechanism limits the number of incorrect login attempts (3 maximum) with a 60-second blocking delay
 - Session cookies security (HttpOnly flag, secure flag with HTTPS, cookies-only sessions)
 - Enhanced filename validation:
-  - Transliteration of accented characters
+  - Transliteration of accented and special characters
   - Verification against forbidden filenames
-  - Protection against hidden files
+  - Protection against hidden files (starting with a dot)
   - Filename normalization
+  - Automatic name generation for invalid files
 - Separation of code and data:
   - Dedicated `/img/` directory for uploaded files
   - Protection against accidental system file overwriting
   - Automatic directory creation if needed
-  - Added `.htaccess` file in the `/img/` directory to prevent malicious code execution
+- Complete image verification:
+  - Double MIME type validation with `finfo` (more secure than `mime_content_type`)
+  - Verification that the file is actually a valid image
+  - Strict control of the match between MIME type and extension
+  - Limitation of dimensions to a maximum of 100x100 pixels
+- Enhanced protection of the image directory via `.htaccess`:
+  - Complete disabling of script execution (.php, .pl, .py, etc.)
+  - Restriction to only allowed image types
+  - Disabling PHP interpretation in the directory
+  - Prevention of directory listing
+  - Security headers to prevent cross-site scripting
+- Detailed error messages to facilitate diagnosis
+- Appropriate permissions on uploaded files (chmod 0644)
 
 ## License
 
