@@ -68,9 +68,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 
+    // Liste des noms de fichiers interdits
+    $forbiddenFiles = [
+        '.htaccess', 
+        'index.php', 
+        'upload.php', 
+        'config.php', 
+        '.env', 
+        'web.config',
+        'favicon.ico',
+        'favicon.png',
+        'README.md',
+        'forumoticons.png'
+    ];
+
     // Sécurisation du nom du fichier
     $fileName = basename($file['name']);
-    $fileName = preg_replace("/[^a-zA-Z0-9._-]/", "", $fileName); // Suppression des caractères dangereux
+    $originalFileName = $fileName;
+
+    // Vérification si le nom commence par un point (fichier caché)
+    if (substr($fileName, 0, 1) === '.') {
+        header("Location: index.php?status=Nom de fichier non autorisé (fichier caché) !");
+        exit();
+    }
+
+    // Translitération des caractères accentués et autres caractères spéciaux
+    $fileName = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $fileName);
+    
+    // Suppression des caractères dangereux
+    $fileName = preg_replace("/[^a-zA-Z0-9._-]/", "", $fileName);
+
+    // Vérification si le nom est dans la liste des fichiers interdits
+    if (in_array(strtolower($fileName), array_map('strtolower', $forbiddenFiles))) {
+        header("Location: index.php?status=Nom de fichier non autorisé !");
+        exit();
+    }
+
+    // Vérification que l'extension correspond à celles autorisées
+    $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    if (!in_array($fileExtension, $allowedExtensions)) {
+        header("Location: index.php?status=Extension de fichier non autorisée !");
+        exit();
+    }
+
+    // Si le nom a été modifié et est devenu vide, utiliser un nom par défaut
+    if (empty($fileName) || $fileName !== $originalFileName) {
+        // Si le nom a été uniquement translitéré (même contenu sans accents), on garde ce nom
+        // Sinon, on génère un nom par défaut
+        if (empty($fileName)) {
+            $fileName = 'custom_' . time() . '.' . $fileExtension;
+        }
+    }
+
     $destination = $uploadDir . $fileName;
 
     if (move_uploaded_file($file['tmp_name'], $destination)) {

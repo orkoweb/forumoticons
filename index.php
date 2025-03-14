@@ -9,12 +9,15 @@ session_start();
 
 $directory = __DIR__; // Utilise le répertoire courant où se trouve index.php
 $images = glob($directory . "/*.{png,gif,jpg,jpeg}", GLOB_BRACE);
-// Filtrer pour exclure favicon.png
-$images = array_filter($images, function($image) {
-    return basename($image) !== "favicon.png";
+
+// Filtrer pour exclure les fichiers système
+$excludedFiles = ["favicon.png", "forumoticons.png"];
+$images = array_filter($images, function($image) use ($excludedFiles) {
+    return !in_array(basename($image), $excludedFiles);
 });
+
 natcasesort($images); // Trie les fichiers par ordre alphabétique, insensible à la casse
-$smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
+$smileyPath = "https://domain.tld/dossier/"; // Modifier avec ton URL de base
 ?>
 
 <!DOCTYPE html>
@@ -73,17 +76,15 @@ $smileyPath = "https://domain.tld/dossier/"; // Modifie avec ton URL de base
     </header>
     
     <?php if (isset($_GET['status'])): ?>
-        <p class="status-message <?= (strpos($_GET['status'], 'incorrect') !== false 
-                                      || strpos($_GET['status'], 'Erreur') !== false 
-                                      || strpos($_GET['status'], 'trop grande') !== false) 
-                                      ? 'status-error' : 'status-success' ?>" id="statusMessage">
+        <p class="status-message <?= (strpos($_GET['status'], 'réussi') !== false) 
+                                    ? 'status-success' : 'status-error' ?>" id="statusMessage">
             <?= htmlspecialchars($_GET['status']); ?>
         </p>
     <?php endif; ?>
     
     <div class="grid" id="smileyGrid">
         <?php foreach ($images as $image): ?>
-            <img src="<?= $smileyPath . basename($image) ?>" class="smiley" title="<?= basename($image) ?>" onclick="copyToClipboard('[img]<?= $smileyPath . basename($image) ?>[/img]')">
+            <img src="<?= $smileyPath . basename($image) ?>" class="smiley" title="<?= htmlspecialchars(basename($image)) ?>" onclick="copyToClipboard('[img]<?= $smileyPath . basename($image) ?>[/img]')">
         <?php endforeach; ?>
     </div>
     <div class="copied-message" id="copiedMessage">Copié !</div>
