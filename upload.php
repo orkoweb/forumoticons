@@ -1,9 +1,4 @@
 <?php
-// Affichage des erreurs (à retirer en production)
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 // Renforcement de la sécurité des sessions
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
