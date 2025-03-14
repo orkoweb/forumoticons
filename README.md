@@ -11,21 +11,21 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
 
 ## Installation
 
-1. **Télécharger l’archive** contenant les fichiers
-2. **Décompresser l’archive** sur votre serveur
-3. **Déplacer le dossier** à l’emplacement souhaité
-4. **Vérifier les permissions** pour permettre l’upload des fichiers (ex: `chmod 755` sur le dossier si nécessaire)
+1. **Télécharger l'archive** contenant les fichiers
+2. **Décompresser l'archive** sur votre serveur
+3. **Déplacer le dossier** à l'emplacement souhaité
+4. **Vérifier les permissions** pour permettre l'upload des fichiers (ex: `chmod 755` sur le dossier si nécessaire)
 
 ## Configuration
 
-- **Mot de passe d’upload** : Modifier la variable `$password` dans `upload.php`
+- **Mot de passe d'upload** : Modifier la variable `$password` dans `upload.php`
 - **URL des smileys** : Modifier la variable `$smileyPath` dans `index.php`
 
 ## Utilisation
 
 - Accéder à la page principale via un navigateur
 - Cliquer sur un smiley pour copier son URL `[img]`
-- Pour ajouter un smiley, utiliser le formulaire d’upload avec le mot de passe requis
+- Pour ajouter un smiley, utiliser le formulaire d'upload avec le mot de passe requis
 
 ## Notes
 
@@ -36,18 +36,23 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
 
 - Seuls les fichiers `.png`, `.gif`, `.jpg`, et `.jpeg` sont autorisés
 - Une limite de taille est appliquée aux fichiers uploadés
-- Protection basique par mot de passe pour l’upload
-- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload
+- Protection basique par mot de passe pour l'upload
+- Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l'accès au formulaire d'upload
 - Sécurisation des cookies de session (HttpOnly, secure avec HTTPS, utilisation exclusive de cookies)
 - Validation renforcée des noms de fichiers :
   - Translitération des caractères accentués
   - Vérification des noms de fichiers interdits
   - Protection contre les fichiers cachés
   - Normalisation des noms de fichiers
+- Séparation du code et des données :
+  - Utilisation d'un répertoire dédié `/img/` pour les fichiers uploadés
+  - Protection contre l'écrasement accidentel des fichiers système
+  - Création automatique du répertoire si nécessaire
+  - Ajout d'un fichier `.htaccess` dans le dossier `/img/` pour empêcher l'exécution de code malveillant
 
 ## Licence
 
-Ce projet est sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Vous pouvez l’utiliser et le modifier, mais pas en tirer profit commercialement.
+Ce projet est sous licence [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Vous pouvez l'utiliser et le modifier, mais pas en tirer profit commercialement.
 
 <div align="center">
     <img src="https://raw.githubusercontent.com/orkoweb/forumoticons/refs/heads/main/forumoticons.png" alt="Forumoticons">
@@ -101,6 +106,11 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
   - Verification against forbidden filenames
   - Protection against hidden files
   - Filename normalization
+- Separation of code and data:
+  - Dedicated `/img/` directory for uploaded files
+  - Protection against accidental system file overwriting
+  - Automatic directory creation if needed
+  - Added `.htaccess` file in the `/img/` directory to prevent malicious code execution
 
 ## License
 
