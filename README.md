@@ -39,6 +39,11 @@ Forumoticons est un script PHP permettant d'afficher une galerie de smileys et d
 - Protection basique par mot de passe pour l’upload
 - Un mécanisme anti-bruteforce limite le nombre de tentatives de connexion erronées pour protéger l’accès au formulaire d’upload
 - Sécurisation des cookies de session (HttpOnly, secure avec HTTPS, utilisation exclusive de cookies)
+- Validation renforcée des noms de fichiers :
+  - Translitération des caractères accentués
+  - Vérification des noms de fichiers interdits
+  - Protection contre les fichiers cachés
+  - Normalisation des noms de fichiers
 
 ## Licence
 
@@ -91,6 +96,11 @@ Forumoticons is a PHP script that displays a gallery of smileys and allows users
 - Basic password protection is implemented for uploads
 - An anti-bruteforce mechanism limits the number of incorrect login attempts to protect access to the upload form
 - Session cookies security (HttpOnly flag, secure flag with HTTPS, cookies-only sessions)
+- Enhanced filename validation:
+  - Transliteration of accented characters
+  - Verification against forbidden filenames
+  - Protection against hidden files
+  - Filename normalization
 
 ## License
 
