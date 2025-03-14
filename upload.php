@@ -1,4 +1,9 @@
 <?php
+// Affichage des erreurs (à retirer en production)
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 // Renforcement de la sécurité des sessions
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
@@ -7,7 +12,13 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
 }
 session_start();
 
-$uploadDir = __DIR__ . "/"; // Dossier où enregistrer les fichiers
+$uploadDir = __DIR__ . "/img/"; // Dossier dédié pour les uploads
+
+// Vérifier si le répertoire existe, sinon le créer
+if (!file_exists($uploadDir)) {
+    mkdir($uploadDir, 0755, true);
+}
+
 $allowedTypes = ['image/png', 'image/jpeg', 'image/gif'];
 $allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 $maxFileSize = 100000; // 100 Ko max
