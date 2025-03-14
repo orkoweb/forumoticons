@@ -17,7 +17,7 @@ $images = array_filter($images, function($image) use ($excludedFiles) {
 });
 
 natcasesort($images); // Trie les fichiers par ordre alphabétique, insensible à la casse
-$smileyPath = "http://localhost:9000/"; // Modifie avec ton URL de base pour les tests locaux
+$smileyPath = "https://domain.tld/dossier/"; // Modifier avec ton URL de base
 ?>
 
 <!DOCTYPE html>
