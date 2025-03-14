@@ -1,0 +1,24 @@
+# Empêcher l'exécution de scripts dans ce répertoire
+<FilesMatch "\.(?i:php|pl|py|cgi|asp|jsp|htm|html|shtml|sh|bash)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Permettre uniquement les types de fichiers d'images
+<FilesMatch "\.(?i:png|gif|jpe?g)$">
+    Order Deny,Allow
+    Allow from all
+</FilesMatch>
+
+# Activer les en-têtes pour prévenir le cross-site scripting
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# Désactiver l'interprétation PHP dans ce répertoire
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+# Empêcher la navigation dans le répertoire
+Options -Indexes

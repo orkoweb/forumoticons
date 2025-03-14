@@ -7,7 +7,13 @@ if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
 }
 session_start();
 
-$directory = __DIR__; // Utilise le répertoire courant où se trouve index.php
+$directory = __DIR__ . "/img"; // Utilise le répertoire dédié pour les uploads
+
+// Vérifier si le répertoire existe, sinon le créer
+if (!file_exists($directory)) {
+    mkdir($directory, 0755, true);
+}
+
 $images = glob($directory . "/*.{png,gif,jpg,jpeg}", GLOB_BRACE);
 
 // Filtrer pour exclure les fichiers système
@@ -17,7 +23,7 @@ $images = array_filter($images, function($image) use ($excludedFiles) {
 });
 
 natcasesort($images); // Trie les fichiers par ordre alphabétique, insensible à la casse
-$smileyPath = "https://domain.tld/dossier/"; // Modifier avec ton URL de base
+$smileyPath = "https://domain.tld/dossier/img/"; // Modifier "https://domain.tld/dossier/" avec ton URL de base
 ?>
 
 <!DOCTYPE html>
