@@ -24,6 +24,20 @@ $allowedExtensions = ['png', 'jpg', 'jpeg', 'gif'];
 $maxFileSize = 100000; // 100 Ko max
 $password = "test"; // À changer !
 
+// Liste des noms de fichiers interdits
+$forbiddenFiles = [
+    '.htaccess', 
+    'index.php', 
+    'upload.php', 
+    'config.php', 
+    '.env', 
+    'web.config',
+    'favicon.ico',
+    'favicon.png',
+    'README.md',
+    'forumoticons.png'
+];
+
 // Initialisation des tentatives de connexion
 if (!isset($_SESSION['attempts'])) {
     $_SESSION['attempts'] = 0;
@@ -42,7 +56,7 @@ if ($_SESSION['attempts'] >= 3) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Vérification du mot de passe
+    // Vérification du mot de passe (conservé tel quel comme demandé)
     if (!isset($_POST['password']) || $_POST['password'] !== $password) {
         $_SESSION['attempts']++;
         $_SESSION['last_attempt_time'] = time();
@@ -52,22 +66,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Vérification du fichier uploadé
     if (!isset($_FILES['file']) || $_FILES['file']['error'] !== UPLOAD_ERR_OK) {
-        header("Location: index.php?status=Erreur lors de l'upload !");
+        $errorMessages = [
+            UPLOAD_ERR_INI_SIZE => "Le fichier dépasse la limite autorisée par PHP",
+            UPLOAD_ERR_FORM_SIZE => "Le fichier dépasse la limite autorisée par le formulaire",
+            UPLOAD_ERR_PARTIAL => "Le fichier n'a été que partiellement téléchargé",
+            UPLOAD_ERR_NO_FILE => "Aucun fichier n'a été téléchargé",
+            UPLOAD_ERR_NO_TMP_DIR => "Dossier temporaire manquant",
+            UPLOAD_ERR_CANT_WRITE => "Échec de l'écriture du fichier sur le disque",
+            UPLOAD_ERR_EXTENSION => "Une extension PHP a arrêté l'envoi de fichier"
+        ];
+        
+        $errorCode = isset($_FILES['file']) ? $_FILES['file']['error'] : UPLOAD_ERR_NO_FILE;
+        $errorMessage = isset($errorMessages[$errorCode]) ? $errorMessages[$errorCode] : "Erreur inconnue lors de l'upload !";
+        
+        header("Location: index.php?status=" . urlencode($errorMessage));
         exit();
     }
 
     $file = $_FILES['file'];
-    $fileType = mime_content_type($file['tmp_name']);
+    
+    // Vérification du type MIME avec finfo (plus sécurisé)
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $fileType = $finfo->file($file['tmp_name']);
+    
+    // Vérification de l'extension
     $fileExtension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
-    // Vérification du type et de l'extension
+    // Vérifier que le fichier est bien une image valide
+    $imageInfo = @getimagesize($file['tmp_name']);
+    if ($imageInfo === false) {
+        header("Location: index.php?status=Le fichier n'est pas une image valide !");
+        exit();
+    }
+
+    // Double vérification - type MIME et extension
     if (!in_array($fileType, $allowedTypes) || !in_array($fileExtension, $allowedExtensions)) {
-        header("Location: index.php?status=Format non autorisé !");
+        header("Location: index.php?status=Format non autorisé ! Type détecté : " . htmlspecialchars($fileType));
+        exit();
+    }
+
+    // Vérification que le type MIME correspond à l'extension
+    $mimeExtensionMap = [
+        'image/png' => 'png',
+        'image/jpeg' => ['jpg', 'jpeg'],
+        'image/gif' => 'gif'
+    ];
+
+    $validExtension = false;
+    if (isset($mimeExtensionMap[$fileType])) {
+        if (is_array($mimeExtensionMap[$fileType])) {
+            $validExtension = in_array($fileExtension, $mimeExtensionMap[$fileType]);
+        } else {
+            $validExtension = ($fileExtension === $mimeExtensionMap[$fileType]);
+        }
+    }
+
+    if (!$validExtension) {
+        header("Location: index.php?status=Le type de fichier ne correspond pas à l'extension !");
         exit();
     }
 
     // Vérification des dimensions de l'image
-    list($width, $height) = getimagesize($file['tmp_name']);
+    list($width, $height) = $imageInfo;
     if ($width > 100 || $height > 100) {
         header("Location: index.php?status=Image trop grande (max 100x100) !");
         exit();
@@ -75,23 +135,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérification de la taille
     if ($file['size'] > $maxFileSize) {
-        header("Location: index.php?status=Fichier trop volumineux !");
+        header("Location: index.php?status=Fichier trop volumineux (max 100 Ko) !");
         exit();
     }
-
-    // Liste des noms de fichiers interdits
-    $forbiddenFiles = [
-        '.htaccess', 
-        'index.php', 
-        'upload.php', 
-        'config.php', 
-        '.env', 
-        'web.config',
-        'favicon.ico',
-        'favicon.png',
-        'README.md',
-        'forumoticons.png'
-    ];
 
     // Sécurisation du nom du fichier
     $fileName = basename($file['name']);
@@ -132,8 +178,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $destination = $uploadDir . $fileName;
+    
+    // Conservation de l'écrasement des fichiers comme demandé
 
     if (move_uploaded_file($file['tmp_name'], $destination)) {
+        // Vérifier les permissions du fichier après l'upload
+        chmod($destination, 0644); // Permissions réduites pour les fichiers téléchargés
         header("Location: index.php?status=Upload réussi !");
     } else {
         header("Location: index.php?status=Erreur lors du déplacement du fichier !");
