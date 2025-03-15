@@ -17,7 +17,7 @@ if (!file_exists($directory)) {
 $images = glob($directory . "/*.{png,gif,jpg,jpeg}", GLOB_BRACE);
 
 // Filtrer pour exclure les fichiers système
-$excludedFiles = ["favicon.png", "forumoticons.png"];
+$excludedFiles = ["favicon.png", "forumoticons.png", "apple-touch-icon.png"];
 $images = array_filter($images, function($image) use ($excludedFiles) {
     return !in_array(basename($image), $excludedFiles);
 });
@@ -33,6 +33,7 @@ $smileyPath = "https://domain.tld/dossier/img/"; // Modifier "https://domain.tld
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png" sizes="32x32">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <title>Forumoticons</title>
     <style>
         body { font-family: monospace; text-align: center; background-color: #a0a0a0; color:#1e1e1e; }
